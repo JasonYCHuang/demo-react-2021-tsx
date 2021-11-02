@@ -1,30 +1,31 @@
-import { useAppSelector, useAppDispatch } from './reducers/hooks'
-import { decrement, increment } from './actions/counterSlice'
+import { useAppSelector, useAppDispatch } from './reducers/hooks';
+import { decrement, increment } from './actions/counterSlice';
 import { incrementByTwo, decrementByTwo } from './apis/counter';
 
 const Counter = () => {
-    const count = useAppSelector((state) => state.counter.value)
-    const dispatch = useAppDispatch()
+  const { value: count, status } = useAppSelector((state) => state.counter);
+  const dispatch = useAppDispatch();
 
-    return (
+  return (
     <div>
-        <div>
-            <button onClick={() => dispatch(incrementByTwo())}>
-                +2
-            </button>
-            <button onClick={() => dispatch(increment())}>
-                +
-            </button>
-            <span>{count}</span>
-            <button onClick={() => dispatch(decrement())}>
-                -
-            </button>
-            <button onClick={() => dispatch(decrementByTwo())}>
-                -2
-            </button>
-        </div>
+      <div>
+        <button type="button" onClick={() => dispatch(incrementByTwo(count))}>
+          +2
+        </button>
+        <button type="button" onClick={() => dispatch(increment())}>
+          +
+        </button>
+        <span>{count}</span>
+        <button type="button" onClick={() => dispatch(decrement())}>
+          -
+        </button>
+        <button type="button" onClick={() => dispatch(decrementByTwo(count))}>
+          -2
+        </button>
+        {status === 'loading' ? <p>Loading...</p> : null}
+      </div>
     </div>
-    )
-}
+  );
+};
 
 export default Counter;
