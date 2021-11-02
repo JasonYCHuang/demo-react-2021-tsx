@@ -1,5 +1,6 @@
 import { useAppSelector, useAppDispatch } from './reducers/hooks'
 import { decrement, increment } from './actions/counterSlice'
+import { incrementByTwo, decrementByTwo } from './apis/counter';
 
 const Counter = () => {
     const count = useAppSelector((state) => state.counter.value)
@@ -8,18 +9,18 @@ const Counter = () => {
     return (
     <div>
         <div>
-            <button
-                aria-label="Increment value"
-                onClick={() => dispatch(increment())}
-            >
-                Increment
+            <button onClick={() => dispatch(incrementByTwo())}>
+                +2
+            </button>
+            <button onClick={() => dispatch(increment())}>
+                +
             </button>
             <span>{count}</span>
-            <button
-            aria-label="Decrement value"
-            onClick={() => dispatch(decrement())}
-            >
-                Decrement
+            <button onClick={() => dispatch(decrement())}>
+                -
+            </button>
+            <button onClick={() => dispatch(decrementByTwo())}>
+                -2
             </button>
         </div>
     </div>
