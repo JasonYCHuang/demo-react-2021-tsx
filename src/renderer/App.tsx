@@ -1,31 +1,43 @@
 import { MemoryRouter as Router, Switch, Route } from 'react-router-dom';
 import Counter from './counter';
-import { useGetPokemonByNameQuery } from './services/pokemon';
-import { usePostToIncrementQuery } from './services/calculator';
+import { 
+  useGetPingQuery,
+  usePostToIncrementMutation,
+} from './services/calculator';
 
-
-const PokeMon = () => {
-  const { data, error, isLoading } = useGetPokemonByNameQuery('bulbasaur')
+const Calculator = () => {
+  const [toIncrement, {}] = usePostToIncrementMutation()
+  const onIncrementClick = async () => {
+    try {
+      await toIncrement({ title, content, user: userId }).unwrap()
+    } catch (err) {
+      console.error('Failed to incremenet: ', err)
+    }
+  }
 
   return (
-    <div className="App">
-      {error ? (
-        <>Oh no, there was an error</>
-      ) : isLoading ? (
-        <>Loading...</>
-      ) : data ? (
-        <>
-          <h3>{data.species.name}</h3>
-          <img src={data.sprites.front_shiny} alt={data.species.name} />
-        </>
-      ) : null}
-      <p></p>
-    </div>
+  <div>
+      <div>
+          <button
+              aria-label="Increment +"
+              onClick={() => dispatch(increment())}
+          >
+              Increment
+          </button>
+          <span>{count}</span>
+          <button
+          aria-label="Decrement -"
+          onClick={() => dispatch(decrement())}
+          >
+              Decrement
+          </button>
+      </div>
+  </div>
   )
 }
 
-const Calculator = () => {
-  const { data, error, isLoading } = usePostToIncrementQuery(17)
+const Ping = () => {
+  const { data: rsp = 'XXX', error, isLoading } = useGetPingQuery('')
 
   return (
     <div className="App">
@@ -33,9 +45,10 @@ const Calculator = () => {
         <>Oh no, there was an error</>
       ) : isLoading ? (
         <>Loading...</>
-      ) : data ? (
+      ) : rsp ? (
         <>
-          <h3>{data.value}</h3>
+          <p>ping response...</p>
+          <p>{rsp}</p>
         </>
       ) : null}
       <p></p>
@@ -47,7 +60,7 @@ const EntryPoint = () => {
   return (
     <div>
       <Counter />
-      <PokeMon />
+      <Ping />
       <Calculator />
     </div>
   );

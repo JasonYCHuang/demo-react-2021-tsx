@@ -11,11 +11,11 @@ export const calculatorApi = createApi({
                 responseHandler: (rsp) => rsp.text(),
             }),
         }),
-        postToIncrement: builder.query({
-            query: (value: number) => ({
+        postToIncrement: builder.mutation({
+            query: (val: number) => ({
                 url: 'counter/increment',
                 method: 'POST',
-                body: { 'payload': { 'value': value } },
+                body: { 'payload': { 'value': val } },
             }),
         }),
     }),
@@ -23,5 +23,5 @@ export const calculatorApi = createApi({
 
 export const { 
     useGetPingQuery,
-    usePostToIncrementQuery
+    usePostToIncrementMutation
  } = calculatorApi;
