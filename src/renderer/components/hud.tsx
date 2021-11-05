@@ -8,6 +8,11 @@ interface MediaCardProps {
 }
 
 const MediaCard = ({ file }: MediaCardProps) => {
+  // const img = new Image();
+  // img.onload = () => {
+  //   console.log(img.width);
+  // };
+  // img.src = URL.createObjectURL(file);
   return (
     <CardMedia
       component="img"
