@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 
 import HudVisx from './hud_visx';
+import DragII from '../d3_drag';
 import { useAppSelector } from '../reducers/hooks';
 
 const hudRootStyle = {
@@ -25,6 +26,7 @@ const HudMain = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }} style={hudRootStyle}>
+      <DragII width={600} height={400} />
       <HudVisx file={selectedFile} key={selectedFile.name} />
     </Box>
   );
