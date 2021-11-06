@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Operation from './operation';
 import Gallery from './gallery';
 import HudMain from './hud_main';
+import BrushChart from '../d3_brush';
 
 const leftStyle = {
   borderRight: '1px solid #ccc',
@@ -19,6 +20,7 @@ const Main = () => {
         </Grid>
         <Grid item xs={6}>
           <HudMain />
+          <BrushChart width={300} height={300} />
         </Grid>
       </Grid>
     </Box>
