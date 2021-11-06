@@ -16,7 +16,6 @@ export const photoSlice = createSlice({
       state.files = state.files.filter((f) => f.name !== payload);
     },
     selectPhoto: (state, { payload }) => {
-      console.log(payload);
       state.selectedName = payload;
     },
   },
