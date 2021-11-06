@@ -4,8 +4,8 @@ import { TypScreenState } from '../types/screen';
 export const screenSlice = createSlice({
   name: 'screen',
   initialState: {
-    imgW: 0,
-    imgH: 0,
+    imgW: 600,
+    imgH: 450,
   } as TypScreenState,
   reducers: {
     writeSelectedImageDim: (state, { payload }) => {

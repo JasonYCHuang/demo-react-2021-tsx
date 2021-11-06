@@ -1,17 +1,34 @@
-import { TypScreenState } from '../types/screen';
-import { useAppSelector } from '../reducers/hooks';
+import { useAppDispatch, useAppSelector } from '../reducers/hooks';
+import { writeSelectedImageDim } from '../actions/screenSlice';
+import type { AppDispatch } from '../reducers/store';
 
 interface HudVisxProps {
-  img: HTMLImageElement;
+  file: File;
 }
 
 const selectedSvgStyle = {
   border: '1px solid blue',
 };
 
-const HudVisx = ({ img }: HudVisxProps) => {
-  const screenState = useAppSelector((state: any) => state.screen);
-  console.log(screenState);
+const setImg = (file: File, dispatch: AppDispatch) => {
+  const img = new Image();
+  img.onload = () => {
+    dispatch(
+      writeSelectedImageDim({
+        imgW: img.width,
+        imgH: img.height,
+      })
+    );
+  };
+  img.src = URL.createObjectURL(file);
+  return img;
+};
+
+const HudVisx = ({ file }: HudVisxProps) => {
+  const { imgW, imgH } = useAppSelector((state: any) => state.screen);
+  const dispatch = useAppDispatch();
+
+  const img = setImg(file, dispatch);
 
   return (
     <svg id="selected-svg" width={600} height={450} style={selectedSvgStyle}>
@@ -19,8 +36,8 @@ const HudVisx = ({ img }: HudVisxProps) => {
         id="selected-image"
         x="0"
         y="0"
-        width={200}
-        height={150}
+        width={imgW}
+        height={imgH}
         xlinkHref={img.src}
       />
     </svg>
