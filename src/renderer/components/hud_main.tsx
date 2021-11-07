@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 
-import DragII from './visx_drag';
 import HudScreen from './hud_screen';
 import { useAppSelector } from '../reducers/hooks';
 
@@ -23,10 +22,10 @@ const HudMain = () => {
   if (!selectedFile) {
     return <Box sx={{ flexGrow: 1 }} style={hudRootStyle} />;
   }
+  console.log('HudMain');
 
   return (
     <Box sx={{ flexGrow: 1 }} style={hudRootStyle}>
-      <DragII width={600} height={600} />
       <HudScreen file={selectedFile} key={selectedFile.name} />
     </Box>
   );

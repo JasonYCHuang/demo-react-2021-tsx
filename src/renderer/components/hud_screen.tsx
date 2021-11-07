@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import SelectRegion from './visx_drag';
+// import SelectRegion from './visx_drag';
 
 const componentW = 600;
 
@@ -42,23 +42,20 @@ const HudScreen = ({ file }: TypHudScreenProps) => {
   const img = loadImg(file, setImgSt);
   const width = componentW;
   const height = imgSt.loaded ? Math.round(imgSt.imgH / imgSt.ratio) : 200;
+  console.log(imgSt);
+  console.log(img);
 
   return (
-    <svg
-      id="selected-svg"
-      width={width}
-      height={height}
-      style={selectedSvgStyle}
-    >
-      <image
-        id="selected-image"
-        x="0"
-        y="0"
-        width={width}
-        xlinkHref={img.src}
-        style={{ display: imgSt.loaded ? 'block' : 'none' }}
-      />
-      <SelectRegion width={width} height={height} />
+    <svg id="root-svg" width={width} height={height} style={selectedSvgStyle}>
+      {false && (
+        <image
+          id="selected-image"
+          x="0"
+          y="0"
+          width={width}
+          style={{ display: imgSt.loaded ? 'block' : 'none', zIndex: 1 }}
+        />
+      )}
     </svg>
   );
 };

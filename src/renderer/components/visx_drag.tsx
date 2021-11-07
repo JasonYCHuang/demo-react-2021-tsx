@@ -44,9 +44,10 @@ const SelectRegion = ({
     onDragMove,
     resetOnStart: true,
   });
+  console.log('SelectRegion');
 
   return (
-    <g>
+    <g id="visx-select-region">
       <LinearGradient id="stroke" from="#ff614e" to="#ffdc64" />
       {[rect].map((r) => {
         const { xb, xe, yb, ye } = r;
@@ -63,6 +64,7 @@ const SelectRegion = ({
             y={yp}
             width={w}
             height={h}
+            style={{ zIndex: 200 }}
           />
         );
       })}
@@ -77,6 +79,7 @@ const SelectRegion = ({
         onTouchStart={dragStart}
         onTouchEnd={isDragging ? dragEnd : undefined}
         onTouchMove={isDragging ? dragMove : undefined}
+        style={{ zIndex: 100 }}
       />
     </g>
   );
