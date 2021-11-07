@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
+import SelectRegion from './visx_drag';
 
 const componentW = 600;
 
@@ -57,6 +58,7 @@ const HudScreen = ({ file }: TypHudScreenProps) => {
         xlinkHref={img.src}
         style={{ display: imgSt.loaded ? 'block' : 'none' }}
       />
+      <SelectRegion width={width} height={height} />
     </svg>
   );
 };
