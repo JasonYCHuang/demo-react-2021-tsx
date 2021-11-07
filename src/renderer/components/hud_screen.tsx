@@ -39,12 +39,13 @@ const HudScreen = ({ file }: HudScreenProps) => {
     ratio: 0,
   });
   const img = loadImg(file, setImgSt);
+  const width = componentW;
   const height = imgSt.loaded ? Math.round(imgSt.imgH / imgSt.ratio) : 200;
 
   return (
     <svg
       id="selected-svg"
-      width={componentW}
+      width={width}
       height={height}
       style={selectedSvgStyle}
     >
@@ -52,9 +53,21 @@ const HudScreen = ({ file }: HudScreenProps) => {
         id="selected-image"
         x="0"
         y="0"
-        width={componentW}
+        width={width}
         xlinkHref={img.src}
         style={{ display: imgSt.loaded ? 'block' : 'none' }}
+      />
+      {/* create the drawing area */}
+      <rect
+        fill="transparent"
+        width={width}
+        height={height}
+        onMouseDown={dragStart}
+        onMouseUp={isDragging ? dragEnd : undefined}
+        onMouseMove={isDragging ? dragMove : undefined}
+        onTouchStart={dragStart}
+        onTouchEnd={isDragging ? dragEnd : undefined}
+        onTouchMove={isDragging ? dragMove : undefined}
       />
     </svg>
   );
