@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-// import SelectRegion from './visx_drag';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import SelectRegion from './visx_drag';
 
 const componentW = 600;
 
@@ -12,24 +12,28 @@ interface TypeImgSt {
   imgW: number;
   imgH: number;
   ratio: number;
+  src: HTMLImageElement['src'] | string;
 }
 
 const selectedSvgStyle = {
   border: '1px solid blue',
 };
 
-const loadImg = (file: File, setImgSt: Dispatch<SetStateAction<TypeImgSt>>) => {
-  const img = new Image();
+const loadImg = (
+  img: HTMLImageElement,
+  file: File,
+  setImgSt: Dispatch<SetStateAction<TypeImgSt>>
+) => {
   img.onload = () => {
     setImgSt({
       loaded: true,
       imgW: img.width,
       imgH: img.height,
       ratio: img.width / componentW,
+      src: img.src,
     });
   };
   img.src = URL.createObjectURL(file);
-  return img;
 };
 
 const HudScreen = ({ file }: TypHudScreenProps) => {
@@ -38,24 +42,25 @@ const HudScreen = ({ file }: TypHudScreenProps) => {
     imgW: 0,
     imgH: 0,
     ratio: 0,
+    src: '',
   });
-  const img = loadImg(file, setImgSt);
+  const img = new Image();
+  useEffect(() => loadImg(img, file, setImgSt), [file.name]); // eslint-disable-line react-hooks/exhaustive-deps
   const width = componentW;
   const height = imgSt.loaded ? Math.round(imgSt.imgH / imgSt.ratio) : 200;
-  console.log(imgSt);
-  console.log(img);
+  console.log('HudScreen');
 
   return (
     <svg id="root-svg" width={width} height={height} style={selectedSvgStyle}>
-      {false && (
-        <image
-          id="selected-image"
-          x="0"
-          y="0"
-          width={width}
-          style={{ display: imgSt.loaded ? 'block' : 'none', zIndex: 1 }}
-        />
-      )}
+      <image
+        id="selected-image"
+        x="0"
+        y="0"
+        width={width}
+        xlinkHref={imgSt.src}
+        style={{ display: imgSt.loaded ? 'block' : 'none', zIndex: 1 }}
+      />
+      <SelectRegion width={width} height={height} />
     </svg>
   );
 };

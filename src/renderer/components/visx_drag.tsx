@@ -44,7 +44,6 @@ const SelectRegion = ({
     onDragMove,
     resetOnStart: true,
   });
-  console.log('SelectRegion');
 
   return (
     <g id="visx-select-region">

@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 
-import HudScreen from './hud_screen';
 import { useAppSelector } from '../reducers/hooks';
+import HudScreen from './hud_screen';
 
 const hudRootStyle = {
   marginTop: '10px',
@@ -22,7 +22,6 @@ const HudMain = () => {
   if (!selectedFile) {
     return <Box sx={{ flexGrow: 1 }} style={hudRootStyle} />;
   }
-  console.log('HudMain');
 
   return (
     <Box sx={{ flexGrow: 1 }} style={hudRootStyle}>
