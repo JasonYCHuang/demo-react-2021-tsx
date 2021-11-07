@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 
 const componentW = 600;
 
-interface HudScreenProps {
+interface TypHudScreenProps {
   file: File;
 }
 
@@ -31,7 +31,7 @@ const loadImg = (file: File, setImgSt: Dispatch<SetStateAction<TypeImgSt>>) => {
   return img;
 };
 
-const HudScreen = ({ file }: HudScreenProps) => {
+const HudScreen = ({ file }: TypHudScreenProps) => {
   const [imgSt, setImgSt] = useState<TypeImgSt>({
     loaded: false,
     imgW: 0,
@@ -56,18 +56,6 @@ const HudScreen = ({ file }: HudScreenProps) => {
         width={width}
         xlinkHref={img.src}
         style={{ display: imgSt.loaded ? 'block' : 'none' }}
-      />
-      {/* create the drawing area */}
-      <rect
-        fill="transparent"
-        width={width}
-        height={height}
-        onMouseDown={dragStart}
-        onMouseUp={isDragging ? dragEnd : undefined}
-        onMouseMove={isDragging ? dragMove : undefined}
-        onTouchStart={dragStart}
-        onTouchEnd={isDragging ? dragEnd : undefined}
-        onTouchMove={isDragging ? dragMove : undefined}
       />
     </svg>
   );
