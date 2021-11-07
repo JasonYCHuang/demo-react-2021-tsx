@@ -24,24 +24,18 @@ const setImg = (file: File, dispatch: AppDispatch) => {
   return img;
 };
 
-const HudVisx = ({ file }: HudVisxProps) => {
-  const { imgW, imgH } = useAppSelector((state: any) => state.screen);
+const HudScreen = ({ file }: HudVisxProps) => {
+  const { imgW } = useAppSelector((state: any) => state.screen);
+  console.log(imgW)
   const dispatch = useAppDispatch();
 
   const img = setImg(file, dispatch);
 
   return (
-    <svg id="selected-svg" width={600} height={450} style={selectedSvgStyle}>
-      <image
-        id="selected-image"
-        x="0"
-        y="0"
-        width={imgW}
-        height={imgH}
-        xlinkHref={img.src}
-      />
+    <svg id="selected-svg" width={600} style={selectedSvgStyle}>
+      <image id="selected-image" x="0" y="0" width={imgW} xlinkHref={img.src} />
     </svg>
   );
 };
 
-export default HudVisx;
+export default HudScreen;
