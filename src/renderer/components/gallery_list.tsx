@@ -57,7 +57,7 @@ const galleryRootStyle = {
   marginTop: '10px',
 };
 
-const Gallery = () => {
+const GalleryList = () => {
   const { files } = useAppSelector((state: any) => state.photo);
 
   return (
@@ -77,4 +77,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default GalleryList;

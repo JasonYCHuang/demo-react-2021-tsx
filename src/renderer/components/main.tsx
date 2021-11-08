@@ -1,10 +1,10 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
-import Operation from './operation';
-import Gallery from './gallery';
+import GalleryCtrl from './gallery_ctrl';
+import GalleryList from './gallery_list';
 import HudMain from './hud_main';
-import HudControl from './hud_control';
+import HudCtrl from './hud_ctrl';
 
 const leftStyle = {
   borderRight: '1px solid #ccc',
@@ -15,11 +15,11 @@ const Main = () => {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={6} style={leftStyle}>
-          <Operation />
-          <Gallery />
+          <GalleryCtrl />
+          <GalleryList />
         </Grid>
         <Grid item xs={6}>
-          <HudControl />
+          <HudCtrl />
           <HudMain />
         </Grid>
       </Grid>

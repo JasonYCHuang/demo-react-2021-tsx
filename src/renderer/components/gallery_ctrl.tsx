@@ -42,7 +42,7 @@ const DzUploadImgs = () => {
   );
 };
 
-const Operation = () => {
+const GalleryCtrl = () => {
   return (
     <Stack spacing={2} direction="row">
       <DzUploadImgs />
@@ -53,4 +53,4 @@ const Operation = () => {
   );
 };
 
-export default Operation;
+export default GalleryCtrl;

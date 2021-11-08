@@ -9,7 +9,7 @@ const StySemiAutoText = {
   padding: '0 5px 0 0',
 };
 
-const HudControl = () => {
+const HudCtrl = () => {
   return (
     <Stack spacing={2} direction="row">
       <ButtonGroup variant="outlined" aria-label="outlined button group">
@@ -27,4 +27,4 @@ const HudControl = () => {
   );
 };
 
-export default HudControl;
+export default HudCtrl;
