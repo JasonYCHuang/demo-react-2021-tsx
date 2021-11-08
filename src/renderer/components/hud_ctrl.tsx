@@ -4,15 +4,15 @@ import Stack from '@mui/material/Stack';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
 import { useAppSelector, useAppDispatch } from '../reducers/hooks';
-import { toggleSemiAutoSelect, toggleMagnifty } from '../actions/ctrlSlice';
+import { toggleSemiAutoSelect, toggleManualEdit } from '../actions/ctrlSlice';
 
 const HudControl = () => {
-  const { isSemiAutoSelect, isMagnify } = useAppSelector(
+  const { isSemiAutoSelect, isManualEdit } = useAppSelector(
     (state: any) => state.ctrl
   );
   const dispatch = useAppDispatch();
   const onClickSelect = () => dispatch(toggleSemiAutoSelect());
-  const onClickMagnify = () => dispatch(toggleMagnifty());
+  const onClickManualEdit = () => dispatch(toggleManualEdit());
 
   return (
     <Stack spacing={1} direction="row">
@@ -30,9 +30,10 @@ const HudControl = () => {
       </ButtonGroup>
 
       <Button
-        variant={isMagnify ? 'contained' : 'outlined'}
+        variant={isManualEdit ? 'contained' : 'outlined'}
         size="small"
-        onClick={onClickMagnify}
+        onClick={onClickManualEdit}
+        disabled
       >
         手動微調
       </Button>
