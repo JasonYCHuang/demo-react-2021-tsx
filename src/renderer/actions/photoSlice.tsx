@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { TypPhotoState } from '../types/photo';
 
 export const photoSlice = createSlice({
-  name: 'counter',
+  name: 'photo',
   initialState: {
     selectedName: null,
     files: [],

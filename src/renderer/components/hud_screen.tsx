@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import SelectRegion from './visx_drag';
+import { useAppSelector } from '../reducers/hooks';
 
 const componentW = 600;
 
@@ -37,6 +38,7 @@ const loadImg = (
 };
 
 const HudScreen = ({ file }: TypHudScreenProps) => {
+  const { isMagnify } = useAppSelector((state: any) => state.ctrl);
   const [imgSt, setImgSt] = useState<TypeImgSt>({
     loaded: false,
     imgW: 0,
@@ -50,13 +52,15 @@ const HudScreen = ({ file }: TypHudScreenProps) => {
   const height = imgSt.loaded ? Math.round(imgSt.imgH / imgSt.ratio) : 200;
   console.log('HudScreen');
 
+  const imgW = isMagnify ? 4000 : width;
+
   return (
     <svg id="root-svg" width={width} height={height} style={selectedSvgStyle}>
       <image
         id="selected-image"
         x="0"
         y="0"
-        width={width}
+        width={imgW}
         xlinkHref={imgSt.src}
         style={{ display: imgSt.loaded ? 'block' : 'none', zIndex: 1 }}
       />

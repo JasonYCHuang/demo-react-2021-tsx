@@ -1,30 +1,43 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-const StySemiAutoText = {
-  lineHeight: '2',
-  padding: '0 5px 0 0',
-};
+import { useAppSelector, useAppDispatch } from '../reducers/hooks';
+import { toggleSemiAutoSelect, toggleMagnifty } from '../actions/ctrlSlice';
 
-const HudCtrl = () => {
+const HudControl = () => {
+  const { isSemiAutoSelect, isMagnify } = useAppSelector(
+    (state: any) => state.ctrl
+  );
+  const dispatch = useAppDispatch();
+  const onClickSelect = () => dispatch(toggleSemiAutoSelect());
+  const onClickMagnify = () => dispatch(toggleMagnifty());
+
   return (
-    <Stack spacing={2} direction="row">
+    <Stack spacing={1} direction="row">
       <ButtonGroup variant="outlined" aria-label="outlined button group">
-        <Typography variant="button" style={StySemiAutoText}>
-          半自動
-        </Typography>
-        <Button variant="outlined" size="small">
+        <Button
+          variant={isSemiAutoSelect ? 'contained' : 'outlined'}
+          size="small"
+          onClick={onClickSelect}
+        >
           匡選
         </Button>
-        <Button variant="outlined" size="small">
-          預測
+        <Button variant="outlined" size="small" disabled={!isSemiAutoSelect}>
+          半自動預測
         </Button>
       </ButtonGroup>
+
+      <Button
+        variant={isMagnify ? 'contained' : 'outlined'}
+        size="small"
+        onClick={onClickMagnify}
+      >
+        手動微調
+      </Button>
     </Stack>
   );
 };
 
-export default HudCtrl;
+export default HudControl;

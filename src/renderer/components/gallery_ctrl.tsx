@@ -31,7 +31,7 @@ const DzUploadImgs = () => {
         {...getInputProps()}
       />
       <Button
-        variant="contained"
+        variant="outlined"
         component="span"
         size="small"
         onClick={onClick}
@@ -44,10 +44,16 @@ const DzUploadImgs = () => {
 
 const GalleryCtrl = () => {
   return (
-    <Stack spacing={2} direction="row">
+    <Stack spacing={1} direction="row">
       <DzUploadImgs />
       <Button variant="outlined" size="small">
         全自動預測
+      </Button>
+      <Button variant="outlined" size="small">
+        儲存
+      </Button>
+      <Button variant="outlined" size="small">
+        產生Excel
       </Button>
     </Stack>
   );
