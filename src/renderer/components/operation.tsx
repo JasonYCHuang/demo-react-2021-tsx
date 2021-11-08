@@ -30,7 +30,12 @@ const DzUploadImgs = () => {
         type="file"
         {...getInputProps()}
       />
-      <Button variant="contained" component="span" onClick={onClick}>
+      <Button
+        variant="contained"
+        component="span"
+        size="small"
+        onClick={onClick}
+      >
         載入圖片
       </Button>
     </label>
@@ -41,7 +46,9 @@ const Operation = () => {
   return (
     <Stack spacing={2} direction="row">
       <DzUploadImgs />
-      <Button variant="outlined">全自動預測</Button>
+      <Button variant="outlined" size="small">
+        全自動預測
+      </Button>
     </Stack>
   );
 };
