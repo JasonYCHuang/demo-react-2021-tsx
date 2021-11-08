@@ -1,20 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TypCtrlState } from '../types/ctrl';
 
+const initialState = {
+  isFullAutoInfer: false,
+  isSave: false,
+  isCreateExcel: false,
+  isSemiAutoSelect: false,
+  isMagnify: false,
+  isManual: false,
+};
+
 export const ctrlSlice = createSlice({
   name: 'ctrl',
-  initialState: {
-    isSemiAutoSelect: false,
-    isMagnify: false,
-  } as TypCtrlState,
+  initialState: initialState as TypCtrlState,
   reducers: {
     toggleSemiAutoSelect: (state) => {
-      state.isSemiAutoSelect = !state.isSemiAutoSelect;
-      state.isMagnify = false;
+      const { isSemiAutoSelect } = state;
+      return {
+        ...initialState,
+        isSemiAutoSelect: !isSemiAutoSelect,
+      };
     },
     toggleMagnifty: (state) => {
-      state.isSemiAutoSelect = false;
-      state.isMagnify = !state.isMagnify;
+      const { isMagnify } = state;
+      return {
+        ...initialState,
+        isMagnify: !isMagnify,
+      };
     },
   },
 });
