@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Operation from './operation';
 import Gallery from './gallery';
 import HudMain from './hud_main';
+import HudControl from './hud_control';
 
 const leftStyle = {
   borderRight: '1px solid #ccc',
@@ -18,6 +19,7 @@ const Main = () => {
           <Gallery />
         </Grid>
         <Grid item xs={6}>
+          <HudControl />
           <HudMain />
         </Grid>
       </Grid>
